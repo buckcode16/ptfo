@@ -70,23 +70,29 @@ const PLACEHOLDER = 'https://placehold.co/300x200'
 export default function Home() {
   const [active, setActive] = useState(sectionsNav[0].id)
   const [bgColor, setBgColor] = useState('#151415')
-  const [imgErr, setImgErr] = useState({}) 
+  const [imgErr, setImgErr] = useState<Record<string, boolean>>({})
   useEffect(() => {
     const obs = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            setActive(e.target.id)
-            const c = e.target.dataset.bg
-            if (c) setBgColor(c)
-          }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          // Element has .id, so this is fine:
+          setActive(entry.target.id)
+          // Avoid dataset; use an attribute read (works on Element)
+          const c = entry.target.getAttribute('data-bg')
+          if (c) setBgColor(c)
         })
       },
       { threshold: 0.5 }
     )
-    document.querySelectorAll('section[data-bg]').forEach(sec => obs.observe(sec))
+
+    document
+      .querySelectorAll('section[data-bg]')
+      .forEach((sec) => obs.observe(sec))
+
     return () => obs.disconnect()
   }, [])
+
 
   return (
     <>
