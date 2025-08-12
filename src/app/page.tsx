@@ -102,6 +102,7 @@ export default function Home() {
           name="description"
           content="Portfolio of Your Name—Vue, Next.js, TypeScript, Node.js"
         />
+         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       <nav className={styles.dotNav} aria-label="Section navigation">
@@ -193,9 +194,10 @@ export default function Home() {
                         alt={p.title}
                         fill
                         className={styles.cardImage}
-                        sizes="(min-width: 900px) 300px, 90vw"
+                        sizes="(min-width: 1200px) 300px, (min-width: 900px) 33vw, (min-width: 600px) 45vw, 90vw"
                         onError={() => setImgErr(s => ({ ...s, [p.title]: true }))}
                         priority={p.title === 'Vue Pintura'}
+                        loading={p.title === 'Vue Pintura' ? 'eager' : 'lazy'}
                       />
 
 
@@ -216,7 +218,7 @@ export default function Home() {
 
         <section id="alterEgo" data-bg="#151415" className={styles.section}>
           <div className={styles.container}>
-            <h2>Alter Ego</h2>
+            <h2>Photography & Design</h2>
             <div className={styles.alterEgoDescription}>
               <p>
                 Here’s a glimpse into my creative endeavor. Selected collaboration with Japanese craft artists.
