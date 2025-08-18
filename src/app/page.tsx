@@ -76,9 +76,7 @@ export default function Home() {
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return
-          // Element has .id, so this is fine:
           setActive(entry.target.id)
-          // Avoid dataset; use an attribute read (works on Element)
           const c = entry.target.getAttribute('data-bg')
           if (c) setBgColor(c)
         })
@@ -132,21 +130,14 @@ export default function Home() {
             <div className={styles.staircase}>
               <div className={styles.step}>
                 <h2>Logic</h2>
-                <p>Like framing a composition in photography, I set the bounds, watch proportion, and note what is present and what is missing.</p>
-                <p>Absence becomes part of the design. I reduce, transpose, or choose a simpler path so the whole still holds.</p>
               </div>
 
               <div className={styles.step}>
                 <h2>and intuition</h2>
-                <p>Like laying washes and working by hand, I listen for balance, contrast, and the quiet cue that says enough.</p>
-                <p>Where clarity and feeling meet, the piece reads true. Constraints frame the work. Tradeoffs are deliberate.</p>
-                <p>The target outcome is a working result with clear intent. It does what is needed now and leaves room to change.</p>
               </div>
 
               <div className={styles.step}>
                 <h2>deliver solutions</h2>
-                <p>In software development, I work closely in collaborative effort with stakeholders to deliver results with clear intents. Tools may vary. Principles hold. I learn the next skill the work requires and apply it in deliberate steps.</p>
-                <p> As a tech practitioner with creative passion, stewardship keeps me tuned to resonance rather than ornament.</p>
               </div>
 
               <div className={styles.step}>
